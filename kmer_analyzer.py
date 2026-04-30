@@ -2,6 +2,10 @@
 
 import sys
 
+#creates a function to validate the seq using input values of a certain seq and the length of a substring 'k'
+#if the length of the seq is less than k, then stops= false
+#if a nucleotide in the seq             , then stops= false
+#if passes these = true
 def validate_sequence(sequence, k):
     if len(sequence) < k:
         return False
@@ -9,7 +13,16 @@ def validate_sequence(sequence, k):
         if nucleotide in '1234567890':
             return False
     return True
+#test for validate seq function
+def test_val_seq()
+    Obs = validate_sequence(ATGTCTGTCTGAA, 2)
+    exp = True
+    Assert exp ==obs
 
+
+#creates function to update the count of substrings
+#input values are the kmer data, a substring, and the next character
+#if a substring/kmer isnt in the data
 def update_kmer_count(kmer_data, kmer, next_char):
     if kmer not in kmer_data:
         kmer_data[kmer] = {'count': 1, 'next_chars': {}}
