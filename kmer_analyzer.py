@@ -1,15 +1,13 @@
 def validate_sequence(sequence, k):
     if len(sequence) < k:
         return False
+    
+    valid_chars = set("ATCGatcg")
     for nucleotide in sequence:
-        if nucleotide.isdigit():
+        if nucleotide not in valid_chars:
             return False
-    return True
 
-#tests
-print(validate_sequence("ATCG", 3))   # should print True
-print(validate_sequence("AT1G", 3))   # should print False
-print(validate_sequence("ATG", 4))    #should print False
+    return True
 
 
 def update_kmer_count(kmer_data, kmer, next_char):
@@ -24,15 +22,29 @@ def update_kmer_count(kmer_data, kmer, next_char):
     kmer_data[kmer]['next_chars'][next_char] += 1
 
     return kmer_data
-#test
-if __name__ == "__main__":
+
+
+def count_kmers_with_context(sequence, k):
     kmer_data = {}
+    
+    for i in range(len(sequence) - k):
+        kmer = sequence[i:i+k]
+        next_char = sequence[i+k]
+        kmer_data = update_kmer_count(kmer_data, kmer, next_char)
+    
+    return kmer_data
 
-    # simulate a DNA sequence split into k-mers and next chars
-    kmer_data = update_kmer_count(kmer_data, "ATG", "C")
-    kmer_data = update_kmer_count(kmer_data, "ATG", "C")
-    kmer_data = update_kmer_count(kmer_data, "ATG", "A")
-    kmer_data = update_kmer_count(kmer_data, "TGC", "A")
 
-    print("Final k-mer data:")
-    print(kmer_data)
+def write_results_to_file(kmer_data, output_filename):
+    sorted_kmers = sorted(kmer_data.keys())
+    
+    with open(output_filename, 'w') as f:
+        for kmer in sorted_kmers:
+            next_chars = kmer_data[kmer]['next_chars']
+            
+            next_char_str = " ".join(
+                f"{char}:{freq}" 
+                for char, freq in sorted(next_chars.items())
+            )
+            
+            f.write(f"{kmer} {next_char_str}\n")
