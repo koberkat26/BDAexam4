@@ -118,8 +118,8 @@ def write_results_to_file(kmer_data, output_filename):
                 for char, freq in sorted(next_chars.items())
             )
 
-            #write to file
-            f.write(f"{kmer} {next_char_str}\n")
+            #write to file: kmer count, char count
+            f.write(f"{kmer} {kmer_data[kmer]['count']} {next_char_str}\n")
 
 
 #tie everything together into this main function
