@@ -50,7 +50,9 @@ def test_update_kmer_count_multiple():
 
 ##############################################count_kmers_with_context tests###################################3
 
-#function to test that characters are being counter/recognized correctly
+#function to test that characters are being counted/recognized correctly
+##gives example seq & substring length
+##writes what the next character after a substring should be & the proper freq/count
 def test_count_kmers_simple():
     sequence = "ATGCGT"
     k = 3
