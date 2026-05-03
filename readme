@@ -7,7 +7,8 @@ Python Readme file
 The main script used to analyze kmers in DNA sequences is titled: "kmer_analyzer.py". Two test sequence files were created, the first being filled with sequences that would lead to failures titled: "failsequencestest.txt". The second being a file with typical sequences that will pass and create an output file, this file is titled: "cleansequences.txt". To run this script you need to include the name of this script, either test sequences text files, and the name of the output file that will be created.
 Example of what to run in the terminal: python kmer_analyzer.py cleansequences.txt 3 output.txt
 
-To run further more specific tests on the script's functions, a pytest suite was created titled: "test_scriptfinal.py". This script tests each individual function instead of the entire script like the sequence files mentioned above. 
+To run further more specific tests on the script's functions, a pytest suite was created titled: "test_scriptfinal.py". This script tests each individual function instead of the entire script like the sequence files mentioned above. For some reason there were issues when running pytest on its own, though the script was named and placed in the correct directory. Run the following in the terminal to ensure it finds the script to run the pytest on: 
+PYTHONPATH=$(pwd) pytest -v
 
 AI was used to confirm the meaning of certain chunks of code to ensure that descriptions, comments, and docstrings were accurate. It was also used to ensure that indentation was cohesive throughout the entire script, to avoid breakages in the command line. 
 
